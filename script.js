@@ -15,15 +15,36 @@ function sendMessage() {
     
     // Clear the input field
     document.getElementById("userInput").value = "";
+
+     // Show typing indicator
+    showTypingIndicator();
     
     // Simulate bot response after a short delay
     setTimeout(function() {
+         // Remove typing indicator
+        hideTypingIndicator();
+
         var botMessage = document.createElement("div");
         botMessage.className = "bot-message";
         botMessage.innerHTML = getAIResponse(userInput);
         chatbox.appendChild(botMessage);
         chatbox.scrollTop = chatbox.scrollHeight;
     }, 1000);
+}
+
+function showTypingIndicator() {
+    var chatbox = document.getElementById("chatbox");
+    var typingIndicator = document.createElement("div");
+    typingIndicator.className = "typing-indicator";
+    typingIndicator.id = "typing-indicator";
+    typingIndicator.innerHTML = "<span></span><span></span><span></span>";
+    chatbox.appendChild(typingIndicator);
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function hideTypingIndicator() {
+    var typingIndicator = document.getElementById("typing-indicator");
+    if (typingIndicator) typingIndicator.remove();
 }
 
 function populateQuestion(question) {

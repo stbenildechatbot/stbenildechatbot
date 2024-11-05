@@ -1,27 +1,30 @@
 function sendMessage() {
     var userInput = document.getElementById("userInput").value;
-    
+
     if (userInput.trim() === "") return;
-    
+
+    // Correct common spelling mistakes before processing
+    userInput = correctSpelling(userInput);
+
     // Display user's message
     var chatbox = document.getElementById("chatbox");
     var userMessage = document.createElement("div");
     userMessage.className = "user-message";
     userMessage.innerHTML = userInput;
     chatbox.appendChild(userMessage);
-    
+
     // Scroll to the bottom of the chatbox
     chatbox.scrollTop = chatbox.scrollHeight;
-    
+
     // Clear the input field
     document.getElementById("userInput").value = "";
 
-     // Show typing indicator
+    // Show typing indicator
     showTypingIndicator();
-    
+
     // Simulate bot response after a short delay
     setTimeout(function() {
-         // Remove typing indicator
+        // Remove typing indicator
         hideTypingIndicator();
 
         var botMessage = document.createElement("div");
@@ -29,7 +32,7 @@ function sendMessage() {
         botMessage.innerHTML = getAIResponse(userInput);
         chatbox.appendChild(botMessage);
         chatbox.scrollTop = chatbox.scrollHeight;
-    }, 1000);
+    }, 1500); // Adjust delay to simulate typing time
 }
 
 function showTypingIndicator() {
@@ -46,9 +49,18 @@ function hideTypingIndicator() {
     var typingIndicator = document.getElementById("typing-indicator");
     if (typingIndicator) typingIndicator.remove();
 }
+
 function sendSuggestedMessage(message) {
     document.getElementById("userInput").value = message;
     sendMessage();
+}
+
+function correctSpelling(input) {
+    // Simple spelling correction example
+    input = input.replace(/\bteh\b/gi, "the");
+    input = input.replace(/\brecieve\b/gi, "receive");
+    // Add more corrections as needed
+    return input;
 }
 
 function populateQuestion(question) {

@@ -46,6 +46,10 @@ function hideTypingIndicator() {
     var typingIndicator = document.getElementById("typing-indicator");
     if (typingIndicator) typingIndicator.remove();
 }
+function sendSuggestedMessage(message) {
+    document.getElementById("userInput").value = message;
+    sendMessage();
+}
 
 function populateQuestion(question) {
     document.getElementById("userInput").value = question;

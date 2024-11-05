@@ -129,7 +129,7 @@ function getAIResponse(input) {
     } else if (input.includes("programs") || input.includes("courses")) {
         return "Tesda or College courses?"
     } else if (input.includes("located") || input.includes("address")) {
-        return "Tesda or College courses?"
+        return "2647 Rizal Ave, Olongapo, Zambales"
     } else if (input.includes("admission requirements")|| input.includes("requirements")) {
         return `
             <strong>Admission Requirements for New Students:</strong><br><br>

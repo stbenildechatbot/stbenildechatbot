@@ -64,6 +64,8 @@ function getAIResponse(input) {
     // General responses based on user input
      if (input.includes("name")) {
         return "I'm a simple AI assistant here to help you!";
+    } else if (input.includes("hello")) {
+        return "Hi, How can I Assist you today?";
     } else if (input.includes("creator")) {
         return "My Creator are Uriel Morales, Nathanael Cac, and Hans Mackey";
     } else if (input.includes("weather")) {

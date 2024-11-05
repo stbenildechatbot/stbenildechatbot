@@ -3,9 +3,6 @@ function sendMessage() {
 
     if (userInput.trim() === "") return;
 
-    // Correct common spelling mistakes before processing
-    userInput = correctSpelling(userInput);
-
     // Display user's message
     var chatbox = document.getElementById("chatbox");
     var userMessage = document.createElement("div");
@@ -55,13 +52,6 @@ function sendSuggestedMessage(message) {
     sendMessage();
 }
 
-function correctSpelling(input) {
-    // Simple spelling correction example
-    input = input.replace(/\bteh\b/gi, "the");
-    input = input.replace(/\brecieve\b/gi, "receive");
-    // Add more corrections as needed
-    return input;
-}
 function populateQuestion(question) {
     document.getElementById("userInput").value = question;
     sendMessage();

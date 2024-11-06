@@ -12,7 +12,7 @@ body {
 .chat-container {
     width: 1000px;
     height: 600px;
-    background-color: #f4f4f4;
+    background-color: #e5e5e5;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -90,7 +90,7 @@ body {
     gap: 10px;
     padding: 10px;
     justify-content: center;
-    background-color: #f4f4f4;
+    background-color: #e5e5e5;
 }
 
 .suggestions button {
@@ -103,6 +103,7 @@ body {
     font-size: 14px;
 }
 
+/* Typing indicator */
 .typing-indicator {
     display: flex;
     gap: 4px;
@@ -139,4 +140,18 @@ body {
     30% {
         transform: translateY(-6px);
     }
+}
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
 }

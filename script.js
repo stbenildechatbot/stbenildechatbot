@@ -59,11 +59,8 @@ function populateQuestion(question) {
     document.getElementById("userInput").value = question;
     sendMessage();
 
-    // Add fade-out animation to suggestion buttons
-    const suggestionButtons = document.querySelectorAll(".suggestions button");
-    suggestionButtons.forEach(button => {
-        button.classList.add("fade-out");
-    });
+     const suggestions = document.querySelector(".suggestions");
+    suggestions.style.display = "none";
 }
 
 

@@ -1,3 +1,11 @@
+// Event listener for pressing Enter key
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault(); // Prevents the default behavior (such as creating a new line in the input field)
+        sendMessage(); // Calls the sendMessage function when Enter is pressed
+    }
+});
+
 function sendMessage() {
     var userInput = document.getElementById("userInput").value;
 
@@ -47,15 +55,17 @@ function hideTypingIndicator() {
     if (typingIndicator) typingIndicator.remove();
 }
 
-function sendSuggestedMessage(message) {
-    document.getElementById("userInput").value = message;
-    sendMessage();
-}
-
 function populateQuestion(question) {
     document.getElementById("userInput").value = question;
     sendMessage();
+
+    // Add fade-out animation to suggestion buttons
+    const suggestionButtons = document.querySelectorAll(".suggestions button");
+    suggestionButtons.forEach(button => {
+        button.classList.add("fade-out");
+    });
 }
+
 
 function getAIResponse(input) {
     // Convert input to lowercase

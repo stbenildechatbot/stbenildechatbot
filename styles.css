@@ -8,13 +8,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #e5e5e5;
 }
 
 .chat-container {
-    width: 400px;
+    width: 1000px;
     height: 600px;
-    background-color: #ffffff;
+    background-color: #e5e5e5;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -36,15 +36,13 @@ body {
     padding: 10px;
     overflow-y: auto;
     background-color: #e5e5e5;
-    display: flex;
-    flex-direction: column;
 }
 
 .bot-message, .user-message {
     margin: 10px 0;
     padding: 10px;
     border-radius: 20px;
-    max-width: 75%;
+    max-width: 70%;
 }
 
 .bot-message {
@@ -133,4 +131,28 @@ body {
     align-self: flex-start;
 }
 
-.
+.typing-indicator span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #bbb;
+    border-radius: 50%;
+    animation: typing 1s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-6px);
+    }
+}

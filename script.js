@@ -7,9 +7,7 @@ const suggestionTexts = [
     "TESDA Courses"
 ];
 
-let lastClickedSuggestion = "";
-
-// Load initial suggestions
+// Load initial suggestions on page load
 window.onload = function() {
     showSuggestions();
 };
@@ -44,8 +42,8 @@ function sendMessage() {
         chatbox.appendChild(botMessage);
         chatbox.scrollTop = chatbox.scrollHeight;
 
-        // Show suggestions after bot response
-        showSuggestions(lastClickedSuggestion);
+        // Always show suggestions after the bot responds
+        showSuggestions();
     }, 1500);
 }
 
@@ -64,37 +62,30 @@ function hideTypingIndicator() {
     if (typingIndicator) typingIndicator.remove();
 }
 
-function showSuggestions(clickedSuggestion) {
+function showSuggestions() {
     const suggestionsDiv = document.querySelector(".suggestions");
     suggestionsDiv.innerHTML = ""; // Clear current suggestions
 
-    const filteredSuggestions = suggestionTexts.filter(suggestion => suggestion !== clickedSuggestion);
-    lastClickedSuggestion = clickedSuggestion;
-
-    filteredSuggestions.forEach(suggestion => {
+    suggestionTexts.forEach(suggestion => {
         const button = document.createElement("button");
         button.textContent = suggestion;
-        button.onclick = () => populateQuestion(suggestion);
+        button.onclick = () => {
+            document.getElementById("userInput").value = suggestion;
+            sendMessage(); // Send the message automatically
+        };
         suggestionsDiv.appendChild(button);
     });
 }
 
-function populateQuestion(question) {
-    document.getElementById("userInput").value = question;
-    sendMessage();
-    lastClickedSuggestion = question;
-}
 function getAIResponse(input) {
-    // Convert input to lowercase
     input = input.toLowerCase();
 
-    // General responses based on user input
-     if (input.includes("name")) {
+    if (input.includes("name")) {
         return "I'm a simple AI assistant here to help you!";
     } else if (input.includes("hello")) {
-        return "Hi, How can I Assist you today?";
+        return "Hi, How can I assist you today?";
     } else if (input.includes("creator")) {
-        return "My Creator are Uriel Morales, Nathanael Cac, and Hans Mackey";
+        return "My creators are Uriel Morales, Nathanael Cac, and Hans Mackey.";
     } else if (input.includes("weather")) {
         return "I can't provide live weather updates, but it's always good to check online!";
     } else if (input.includes("time")) {
@@ -156,10 +147,10 @@ function getAIResponse(input) {
             - Cookery NCII
         `;
     } else if (input.includes("programs") || input.includes("courses")) {
-        return "Tesda or College courses?"
+        return "Tesda or College courses?";
     } else if (input.includes("located") || input.includes("address") || input.includes("location")) {
-        return "2647 Rizal Ave, Olongapo, Zambales"
-    } else if (input.includes("admission requirements")|| input.includes("requirements")) {
+        return "2647 Rizal Ave, Olongapo, Zambales";
+    } else if (input.includes("admission requirements") || input.includes("requirements")) {
         return `
             <strong>Admission Requirements for New Students:</strong><br><br>
             - Report Card (Form 138)<br>
@@ -174,27 +165,6 @@ function getAIResponse(input) {
             - Original Copy of Birth Certificate (PSA)<br>
             - 2x2 Picture with white background (2 copies)<br>
             - Long Brown Envelope
-        `;
-    }  else if (input.includes("admission process")|| input.includes("process")) {
-        return `
-            <strong>Admission Process:</strong><br><br>
-            Enrollment Schedule: Monday to Friday, 8:00 AM - 5:00 PM<br><br>
-            <strong>Reminder:</strong><br>
-            - Wear your face mask at all times.<br>
-            - Bring your own ballpen for health and safety reasons.
-        `;
-    } else if (input.includes("contact info") || input.includes("inquiries")) {
-        return `
-            <strong>Contact Information:</strong><br><br>
-            - Landline: (047) 602-4985<br>
-            - Mobile: 0999-359-0023<br>
-            - Facebook: <a href="https://www.facebook.com/stbenilde">facebook.com/stbenilde</a>
-        `;
-     } else if (input.includes("about") || input.includes("school info")) {
-        return `
-            St. Benilde Center for Global Competence, Inc. is a recognized institution offering various programs in business, ICT, and tourism. 
-            We aim to equip students with the skills needed for global competence through quality education and training.<br><br>
-            Our programs cater to various fields such as Business, Information Technology, Tourism, and Hospitality, ensuring our students are industry-ready.
         `;
     } else {
         return "I don't have an answer for that right now, but feel free to ask another question!";

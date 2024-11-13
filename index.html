@@ -13,19 +13,13 @@
         </div>
 
         <div id="chatbox">
-            <div class="bot-message">Hello! I'm your AI assistant. How can I Help you?</div>
+            <div class="bot-message">Hello! I'm your AI assistant. How can I help you?</div>
         </div>
-                    <!-- Suggested Questions at Bottom -->
-                    <div class="suggestions">
-                        <button onclick="populateQuestion('What are the college programs available?')">College Programs</button>
-                        <button onclick="populateQuestion('What are the admission requirements?')">Admission Requirements</button>
-                        <button onclick="populateQuestion('Where is the school located?')">School Location</button>
-                        <button onclick="populateQuestion('Can you tell me about TESDA courses?')">TESDA Courses</button>
-                    </div>
-        
+
+        <!-- Suggested Questions at Bottom -->
+        <div class="suggestions"></div>
+
         <div class="input-container">
-
-
             <input type="text" id="userInput" placeholder="Type your message..." autocomplete="off">
             <button id="send" onclick="sendMessage()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send">

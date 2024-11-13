@@ -1,3 +1,5 @@
+/* styles.css */
+
 body {
     margin: 0;
     padding: 0;
@@ -101,6 +103,19 @@ body {
     color: white;
     cursor: pointer;
     font-size: 14px;
+    opacity: 0;
+    animation: popUp 0.5s forwards ease-in-out;
+}
+
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Typing indicator */
@@ -141,5 +156,3 @@ body {
         transform: translateY(-6px);
     }
 }
-
-

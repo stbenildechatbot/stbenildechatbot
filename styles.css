@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #e5e5e5;
+    background-color: #f5f5f5;
 }
 
 .chat-container {
@@ -35,7 +35,7 @@ body {
     flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
-    background-color: #f5f5f5;
+    background-color: #e5e5e5;
     display: flex;
     flex-direction: column;
 }
@@ -50,7 +50,6 @@ body {
 .bot-message {
     background-color: #ececec;
     align-self: flex-start;
-    color: #333;
 }
 
 .user-message {
@@ -62,7 +61,7 @@ body {
 .input-container {
     display: flex;
     padding: 10px;
-    background-color: #ffffff;
+    background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -95,7 +94,7 @@ body {
     gap: 10px;
     padding: 10px;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #e5e5e5;
 }
 
 .suggestions button {
@@ -134,28 +133,4 @@ body {
     align-self: flex-start;
 }
 
-.typing-indicator span {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: #bbb;
-    border-radius: 50%;
-    animation: typing 1s infinite ease-in-out;
-}
-
-.typing-indicator span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-@keyframes typing {
-    0%, 60%, 100% {
-        transform: translateY(0);
-    }
-    30% {
-        transform: translateY(-6px);
-    }
-}
+.

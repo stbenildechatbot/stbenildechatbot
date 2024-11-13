@@ -7,7 +7,9 @@ const suggestionTexts = [
     "TESDA Courses"
 ];
 
-// Load initial suggestions on page load
+let lastClickedSuggestion = "";
+
+// Load initial suggestions
 window.onload = function() {
     showSuggestions();
 };
@@ -42,8 +44,8 @@ function sendMessage() {
         chatbox.appendChild(botMessage);
         chatbox.scrollTop = chatbox.scrollHeight;
 
-        // Always show suggestions after the bot responds
-        showSuggestions();
+        // Show suggestions after bot response
+        showSuggestions(lastClickedSuggestion);
     }, 1500);
 }
 
@@ -62,30 +64,37 @@ function hideTypingIndicator() {
     if (typingIndicator) typingIndicator.remove();
 }
 
-function showSuggestions() {
+function showSuggestions(clickedSuggestion) {
     const suggestionsDiv = document.querySelector(".suggestions");
     suggestionsDiv.innerHTML = ""; // Clear current suggestions
 
-    suggestionTexts.forEach(suggestion => {
+    const filteredSuggestions = suggestionTexts.filter(suggestion => suggestion !== clickedSuggestion);
+    lastClickedSuggestion = clickedSuggestion;
+
+    filteredSuggestions.forEach(suggestion => {
         const button = document.createElement("button");
         button.textContent = suggestion;
-        button.onclick = () => {
-            document.getElementById("userInput").value = suggestion;
-            sendMessage(); // Send the message automatically
-        };
+        button.onclick = () => populateQuestion(suggestion);
         suggestionsDiv.appendChild(button);
     });
 }
 
+function populateQuestion(question) {
+    document.getElementById("userInput").value = question;
+    sendMessage();
+    lastClickedSuggestion = question;
+}
 function getAIResponse(input) {
+    // Convert input to lowercase
     input = input.toLowerCase();
 
-    if (input.includes("name")) {
+    // General responses based on user input
+     if (input.includes("name")) {
         return "I'm a simple AI assistant here to help you!";
     } else if (input.includes("hello")) {
-        return "Hi, How can I assist you today?";
+        return "Hi, How can I Assist you today?";
     } else if (input.includes("creator")) {
-        return "My creators are Uriel Morales, Nathanael Cac, and Hans Mackey.";
+        return "My Creator are Uriel Morales, Nathanael Cac, and Hans Mackey";
     } else if (input.includes("weather")) {
         return "I can't provide live weather updates, but it's always good to check online!";
     } else if (input.includes("time")) {
@@ -95,7 +104,7 @@ function getAIResponse(input) {
     } else if (input.includes("help")) {
         return "I'm here to answer your questions! Feel free to ask me anything.";
     } else if (input.includes("tesda courses") || input.includes("tesda")) {
-        return `
+        return 
             Here are the TESDA courses we offer:
             <br><br>
             - 3D Animation NC III: 1,040 hours <br>
@@ -111,9 +120,9 @@ function getAIResponse(input) {
             - Front Office Services NC II: 472 hours <br>
             - Housekeeping NC II: 436 hours <br>
             - Tour Guiding Services NC II: 196 hours
-        `;
+        ;
     } else if (input.includes("college programs") || input.includes("college courses") || input.includes("college")) {
-        return `
+        return 
             Here are the college programs we offer:
             <br><br>
             <strong>Business and Management Department:</strong><br>
@@ -145,13 +154,13 @@ function getAIResponse(input) {
             - Event Management Services NCIII<br>
             - Bread and Pastry Production NCII<br>
             - Cookery NCII
-        `;
+        ;
     } else if (input.includes("programs") || input.includes("courses")) {
-        return "Tesda or College courses?";
+        return "Tesda or College courses?"
     } else if (input.includes("located") || input.includes("address") || input.includes("location")) {
-        return "2647 Rizal Ave, Olongapo, Zambales";
-    } else if (input.includes("admission requirements") || input.includes("requirements")) {
-        return `
+        return "2647 Rizal Ave, Olongapo, Zambales"
+    } else if (input.includes("admission requirements")|| input.includes("requirements")) {
+        return 
             <strong>Admission Requirements for New Students:</strong><br><br>
             - Report Card (Form 138)<br>
             - Certificate of Good Moral<br>
@@ -165,7 +174,28 @@ function getAIResponse(input) {
             - Original Copy of Birth Certificate (PSA)<br>
             - 2x2 Picture with white background (2 copies)<br>
             - Long Brown Envelope
-        `;
+        ;
+    }  else if (input.includes("admission process")|| input.includes("process")) {
+        return 
+            <strong>Admission Process:</strong><br><br>
+            Enrollment Schedule: Monday to Friday, 8:00 AM - 5:00 PM<br><br>
+            <strong>Reminder:</strong><br>
+            - Wear your face mask at all times.<br>
+            - Bring your own ballpen for health and safety reasons.
+        ;
+    } else if (input.includes("contact info") || input.includes("inquiries")) {
+        return 
+            <strong>Contact Information:</strong><br><br>
+            - Landline: (047) 602-4985<br>
+            - Mobile: 0999-359-0023<br>
+            - Facebook: <a href="https://www.facebook.com/stbenilde">facebook.com/stbenilde</a>
+        ;
+     } else if (input.includes("about") || input.includes("school info")) {
+        return 
+            St. Benilde Center for Global Competence, Inc. is a recognized institution offering various programs in business, ICT, and tourism. 
+            We aim to equip students with the skills needed for global competence through quality education and training.<br><br>
+            Our programs cater to various fields such as Business, Information Technology, Tourism, and Hospitality, ensuring our students are industry-ready.
+        ;
     } else {
         return "I don't have an answer for that right now, but feel free to ask another question!";
     }

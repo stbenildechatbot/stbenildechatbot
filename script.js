@@ -1,48 +1,57 @@
+// script.js
+
+const suggestionTexts = [
+    "College Programs",
+    "Admission Requirements",
+    "School Location",
+    "TESDA Courses"
+];
+
+let lastClickedSuggestion = "";
+
+// Load initial suggestions
+window.onload = function() {
+    showSuggestions();
+};
+
 // Event listener for pressing Enter key
 document.getElementById("userInput").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Prevents the default behavior (such as creating a new line in the input field)
-        sendMessage(); // Calls the sendMessage function when Enter is pressed
+        event.preventDefault();
+        sendMessage();
     }
 });
 
 function sendMessage() {
-    var userInput = document.getElementById("userInput").value;
-
+    const userInput = document.getElementById("userInput").value;
     if (userInput.trim() === "") return;
 
-    // Display user's message
-    var chatbox = document.getElementById("chatbox");
-    var userMessage = document.createElement("div");
+    const chatbox = document.getElementById("chatbox");
+    const userMessage = document.createElement("div");
     userMessage.className = "user-message";
     userMessage.innerHTML = userInput;
     chatbox.appendChild(userMessage);
-
-    // Scroll to the bottom of the chatbox
     chatbox.scrollTop = chatbox.scrollHeight;
-
-    // Clear the input field
     document.getElementById("userInput").value = "";
 
-    // Show typing indicator
     showTypingIndicator();
 
-    // Simulate bot response after a short delay
     setTimeout(function() {
-        // Remove typing indicator
         hideTypingIndicator();
-
-        var botMessage = document.createElement("div");
+        const botMessage = document.createElement("div");
         botMessage.className = "bot-message";
         botMessage.innerHTML = getAIResponse(userInput);
         chatbox.appendChild(botMessage);
         chatbox.scrollTop = chatbox.scrollHeight;
-    }, 1500); // Adjust delay to simulate typing time
+
+        // Show suggestions after bot response
+        showSuggestions(lastClickedSuggestion);
+    }, 1500);
 }
 
 function showTypingIndicator() {
-    var chatbox = document.getElementById("chatbox");
-    var typingIndicator = document.createElement("div");
+    const chatbox = document.getElementById("chatbox");
+    const typingIndicator = document.createElement("div");
     typingIndicator.className = "typing-indicator";
     typingIndicator.id = "typing-indicator";
     typingIndicator.innerHTML = "<span></span><span></span><span></span>";
@@ -51,19 +60,30 @@ function showTypingIndicator() {
 }
 
 function hideTypingIndicator() {
-    var typingIndicator = document.getElementById("typing-indicator");
+    const typingIndicator = document.getElementById("typing-indicator");
     if (typingIndicator) typingIndicator.remove();
+}
+
+function showSuggestions(clickedSuggestion) {
+    const suggestionsDiv = document.querySelector(".suggestions");
+    suggestionsDiv.innerHTML = ""; // Clear current suggestions
+
+    const filteredSuggestions = suggestionTexts.filter(suggestion => suggestion !== clickedSuggestion);
+    lastClickedSuggestion = clickedSuggestion;
+
+    filteredSuggestions.forEach(suggestion => {
+        const button = document.createElement("button");
+        button.textContent = suggestion;
+        button.onclick = () => populateQuestion(suggestion);
+        suggestionsDiv.appendChild(button);
+    });
 }
 
 function populateQuestion(question) {
     document.getElementById("userInput").value = question;
     sendMessage();
-
-     const suggestions = document.querySelector(".suggestions");
-    suggestions.style.display = "none";
+    lastClickedSuggestion = question;
 }
-
-
 function getAIResponse(input) {
     // Convert input to lowercase
     input = input.toLowerCase();

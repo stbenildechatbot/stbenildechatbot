@@ -270,9 +270,9 @@ function getAIResponse(input) {
         return "Tesda or College courses?"
     } else if (input.includes("located") || input.includes("address") || input.includes("location") || input.includes("Where") || input.includes("building")) {
         return `
-        <strong>Main Building is located at 2647 Rizal Ave, Olongapo City, Zambales</strong><<br>
+        <strong>Main Building is located at 2647 Rizal Ave, Olongapo City, Zambales</strong><br>
         Nearest Landmark: Front of Shell Gas Station and Andoks.<br><br>
-        <strong>Annex Building is located in Corner W 18th Street, Olongapo City, Zambale</strong><<br>
+        <strong>Annex Building is located in Corner W 18th Street, Olongapo City, Zambale</strong><br>
         Landmark: 3rd floor and 4th floor of Victory Liner Central Station Building.
 
         `;

@@ -178,7 +178,7 @@ function getAIResponse(input) {
         `;
 
     
-    }   else if (input.includes("work") || input.includes("career") || input.includes("graduate") || input.includes("opporunity") || input.includes("oppotunities")) {
+    }   else if (input.includes("work") || input.includes("career") || input.includes("graduate") || input.includes("opporunity") || input.includes("oppotunities") || input.includes("jobs")) {
         return `
         <Strong>List of Career for IT Graduates</strong><br><br>
         Business Processing Outsourcing(BPO): IT Support Specialist, Technical Support Engineer, Help Desk Analyst.<br>

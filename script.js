@@ -16,10 +16,20 @@ window.onload = function() {
 };
 
 // Event listener for pressing Enter key
-document.getElementById("userInput").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        sendMessage();
+document.addEventListener("DOMContentLoaded", function () {
+    const questionElement = document.getElementById("user-question");
+    const answerElement = document.getElementById("bot-answer");
+
+    // Detect the question
+    if (questionElement.textContent === "Where can I message you?") {
+        // Create a clickable link dynamically
+        const link = document.createElement("a");
+        link.href = "https://facebook.com/BNDCHATBOT"; // Replace with your messaging link
+        link.target = "_blank"; // Opens the link in a new tab
+        link.textContent = "Click here to message me!";
+        
+        // Append the link to the bot's answer container
+        answerElement.appendChild(link);
     }
 });
 
@@ -178,7 +188,7 @@ function getAIResponse(input) {
         `;
 
     
-    }   else if (input.includes("work") || input.includes("career") || input.includes("graduate") || input.includes("opporunity") || input.includes("oppotunities") || input.includes("jobs")) {
+    }   else if (input.includes("work") || input.includes("career") || input.includes("graduate") || input.includes("opporunity") || input.includes("oppotunities")) {
         return `
         <Strong>List of Career for IT Graduates</strong><br><br>
         Business Processing Outsourcing(BPO): IT Support Specialist, Technical Support Engineer, Help Desk Analyst.<br>
@@ -270,9 +280,9 @@ function getAIResponse(input) {
         return "Tesda or College courses?"
     } else if (input.includes("located") || input.includes("address") || input.includes("location") || input.includes("Where") || input.includes("building")) {
         return `
-        <strong>Main Building is located at 2647 Rizal Ave, Olongapo City, Zambales</strong><br>
+        <strong>Main Building is located at 2647 Rizal Ave, Olongapo City, Zambales</strong><<br>
         Nearest Landmark: Front of Shell Gas Station and Andoks.<br><br>
-        <strong>Annex Building is located in Corner W 18th Street, Olongapo City, Zambale</strong><br>
+        <strong>Annex Building is located in Corner W 18th Street, Olongapo City, Zambale</strong><<br>
         Landmark: 3rd floor and 4th floor of Victory Liner Central Station Building.
 
         `;

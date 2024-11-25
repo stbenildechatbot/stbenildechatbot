@@ -8,13 +8,13 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #e5e5e5;
+    background-color: #c3f3d3;
 }
 
 .chat-container {
     width: 1000px;
     height: 600px;
-    background-color: #e5e5e5;
+    background-color: #dcffd2;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@ body {
     flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
-    background-color: #e5e5e5;
+    background-color: #e3dac9;
 }
 
 .bot-message, .user-message {

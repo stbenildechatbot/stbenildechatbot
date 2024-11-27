@@ -17,8 +17,16 @@ window.onload = function() {
 
 // Event listener for pressing Enter key
 document.addEventListener("DOMContentLoaded", function () {
-    const questionElement = document.getElementById("user-question");
-    const answerElement = document.getElementById("bot-answer");
+    const inputField = document.getElementById("userInput");
+    
+    // Detect Enter key and trigger sendMessage
+    inputField.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+});
 
     // Detect the question
     if (questionElement.textContent === "Where can I message you?") {

@@ -19,11 +19,10 @@ window.onload = function() {
 document.addEventListener("DOMContentLoaded", function () {
     const inputField = document.getElementById("userInput");
     
-    // Detect Enter key and trigger sendMessage
     inputField.addEventListener("keydown", function (event) {
         if (event.key === "Enter") {
-            event.preventDefault();
-            sendMessage();
+            event.preventDefault(); // Prevent the default action (like form submission)
+            sendMessage(); // Trigger the sendMessage function
         }
     });
 });

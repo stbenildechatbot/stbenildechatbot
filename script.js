@@ -15,13 +15,49 @@ window.onload = function() {
     showSuggestions();
 };
 
-// Event listener for pressing Enter key
-document.getElementById("userInput").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        sendMessage();
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const inputField = document.getElementById("userInput");
+
+    // Detect Enter key and trigger sendMessage
+    inputField.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent default behavior (like form submission)
+            sendMessage(); // Call the sendMessage function
+        }
+    });
 });
+
+function sendMessage() {
+    const userInput = document.getElementById("userInput").value.trim();
+    if (userInput === "") return; // Don't send empty messages
+
+    const chatbox = document.getElementById("chatbox");
+
+    // Add user message
+    const userMessage = document.createElement("div");
+    userMessage.className = "user-message";
+    userMessage.textContent = userInput;
+    chatbox.appendChild(userMessage);
+    chatbox.scrollTop = chatbox.scrollHeight;
+
+    // Clear input field
+    document.getElementById("userInput").value = "";
+
+    // Simulate typing and bot response
+    showTypingIndicator();
+
+    setTimeout(function () {
+        hideTypingIndicator();
+        const botMessage = document.createElement("div");
+        botMessage.className = "bot-message";
+        botMessage.innerHTML = getAIResponse(userInput);
+        chatbox.appendChild(botMessage);
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        // Show suggestions after bot response
+        showSuggestions();
+    }, 1500);
+}
 
 function sendMessage() {
     const userInput = document.getElementById("userInput").value.trim();

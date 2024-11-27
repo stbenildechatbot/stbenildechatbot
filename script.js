@@ -15,80 +15,10 @@ window.onload = function() {
     showSuggestions();
 };
 
-
-document.getElementById("userInput").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        sendMessage();
-    }
-}); 
-// Ensure this bracket closes the event listener function
-
-function sendMessage() {
-    const userInput = document.getElementById("userInput").value.trim();
-    if (userInput === "") return; // Don't send empty messages
-
-    const chatbox = document.getElementById("chatbox");
-
-    // Add user message
-    const userMessage = document.createElement("div");
-    userMessage.className = "user-message";
-    userMessage.textContent = userInput;
-    chatbox.appendChild(userMessage);
-    chatbox.scrollTop = chatbox.scrollHeight;
-
-    // Clear input field
-    document.getElementById("userInput").value = "";
-
-    // Simulate typing and bot response
-    showTypingIndicator();
-
-    setTimeout(function () {
-        hideTypingIndicator();
-        const botMessage = document.createElement("div");
-        botMessage.className = "bot-message";
-        botMessage.innerHTML = getAIResponse(userInput);
-        chatbox.appendChild(botMessage);
-        chatbox.scrollTop = chatbox.scrollHeight;
-
-        // Show suggestions after bot response
-        showSuggestions();
-    }, 1500);
-}
-
-
-function sendMessage() {
-    const userInput = document.getElementById("userInput").value.trim();
-    if (userInput === "") return; // Don't send empty messages
-
-    const chatbox = document.getElementById("chatbox");
-
-    // Add user message
-    const userMessage = document.createElement("div");
-    userMessage.className = "user-message";
-    userMessage.textContent = userInput;
-    chatbox.appendChild(userMessage);
-    chatbox.scrollTop = chatbox.scrollHeight;
-
-    // Clear input field
-    document.getElementById("userInput").value = "";
-
-    // Simulate typing and bot response
-    showTypingIndicator();
-
-    setTimeout(function () {
-        hideTypingIndicator();
-        const botMessage = document.createElement("div");
-        botMessage.className = "bot-message";
-        botMessage.innerHTML = getAIResponse(userInput);
-        chatbox.appendChild(botMessage);
-        chatbox.scrollTop = chatbox.scrollHeight;
-
-        // Show suggestions after bot response
-        showSuggestions();
-    }, 1500);
-}
-
+// Event listener for pressing Enter key
+document.addEventListener("DOMContentLoaded", function () {
+    const questionElement = document.getElementById("user-question");
+    const answerElement = document.getElementById("bot-answer");
 
     // Detect the question
     if (questionElement.textContent === "Where can I message you?") {

@@ -15,16 +15,12 @@ window.onload = function() {
     showSuggestions();
 };
 
-document.addEventListener("DOMContentLoaded", function () {
-    const inputField = document.getElementById("userInput");
-
-    // Detect Enter key and trigger sendMessage
-    inputField.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Prevent default behavior (like form submission)
-            sendMessage(); // Call the sendMessage function
-        }
-    });
+// Event listener for pressing Enter key
+document.getElementById("userInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
 });
 
 function sendMessage() {

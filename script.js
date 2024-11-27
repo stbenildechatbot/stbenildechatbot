@@ -20,6 +20,9 @@ document.getElementById("userInput").addEventListener("keydown", function(event)
     if (event.key === "Enter") {
         event.preventDefault();
         sendMessage();
+    }
+}); 
+// Ensure this bracket closes the event listener function
 
 function sendMessage() {
     const userInput = document.getElementById("userInput").value.trim();
@@ -52,6 +55,7 @@ function sendMessage() {
         showSuggestions();
     }, 1500);
 }
+
 
 function sendMessage() {
     const userInput = document.getElementById("userInput").value.trim();

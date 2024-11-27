@@ -163,7 +163,7 @@ body {
     position: fixed; /* Position relative to the entire viewport */
     bottom: 10px; /* Distance from the bottom edge of the website */
     right: 10px; /* Distance from the right edge of the website */
-    width: 200px; /* Adjust size as needed */
+    width: 400px; /* Adjust size as needed */
     height: auto; /* Maintain aspect ratio */
     z-index: 100; /* Keep it above other elements */
     border-radius: 50%; /* Make it circular */
